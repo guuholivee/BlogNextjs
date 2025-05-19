@@ -8,6 +8,8 @@ import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
 
+// ...restante do código...
+
 export default function Index({ posts, globalData }) {
   return (
     <Layout>
@@ -20,12 +22,11 @@ export default function Index({ posts, globalData }) {
         <ul className="w-full">
           {posts.map((post) => (
             <li
-              key={post.filePath}
+              key={post.id}
               className="transition border border-b-0 bg-white/10 border-gray-800/10 md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg dark:bg-black/30 hover:bg-white/20 dark:hover:bg-black/50 dark:border-white/10 last:border-b"
               data-sb-object-id={`posts/${post.filePath}`}
             >
               <Link
-                as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
                 href={`/posts/[slug]`}
                 className="block px-6 py-6 lg:py-10 lg:px-16 focus:outline-hidden focus:ring-4 focus:ring-primary/50"
               >
@@ -67,9 +68,11 @@ export default function Index({ posts, globalData }) {
   );
 }
 
-export function getStaticProps() {
-  const posts = getPosts();
-  const globalData = getGlobalData();
+export async function getStaticProps() {
+  const posts = await getPosts();
+  const globalData = getGlobalData()
+
+  console.log(posts);
 
   return { props: { posts, globalData } };
 }

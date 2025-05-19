@@ -1,6 +1,6 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { generateCssVariables } from '../utils/theme-utils';
+const { generateCssVariables } = require('../utils/theme-utils');
 
 class MyDocument extends Document {
   render() {

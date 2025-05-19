@@ -4,7 +4,7 @@ const THEME = process.env.BLOG_THEME || 'default';
 const FONT_HEADINGS = process.env.BLOG_FONT_HEADINGS || 'sans-serif';
 const FONT_BODY = process.env.BLOG_FONT_BODY || 'sans-serif';
 
-export function generateCssVariables() {
+function generateCssVariables() {
   const cssVars = {};
   const themeColors = COLOR_THEMES[THEME]?.colors || {};
   for (const [key, value] of Object.entries(themeColors)) {
@@ -19,3 +19,5 @@ export function generateCssVariables() {
 
   return cssVarsString;
 }
+
+module.exports = { generateCssVariables };
